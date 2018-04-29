@@ -1,0 +1,22 @@
+.country-container {
+  img {
+    width: 100%;
+  }
+
+  .country-data {
+    margin: 24px 0;
+
+    > div {
+      margin: 8px 0;
+      > span {
+        margin-right: 16px;
+      }
+    }
+  }
+
+  .languages {
+    > span {
+      margin-right: 16px;
+    }
+  }
+}
