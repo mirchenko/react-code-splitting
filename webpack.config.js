@@ -3,12 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js',
+  },
   output: {
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    chunkFilename: '[name].bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 8080,
     historyApiFallback: true
@@ -34,5 +38,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template.html'
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all"
+        }
+      }
+    }
+  }
 };
