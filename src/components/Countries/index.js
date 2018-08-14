@@ -15,7 +15,11 @@ export default class Countries extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCountries();
+    const { countries: { data } } = this.props;
+
+    if (!data || data.length === 0) {
+      this.props.fetchCountries();
+    }
   }
 
 
