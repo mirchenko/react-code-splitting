@@ -42,6 +42,7 @@
     "node-sass": "^4.8.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-helmet": "^5.2.1",
     "react-loadable": "^5.3.1",
     "react-redux": "^5.0.7",
     "react-router-config": "^1.0.0-beta.4",
