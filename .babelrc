@@ -1,15 +1,15 @@
 {
-  "presets": [["env"], "react"],
+  "presets": [["@babel/preset-env"], "@babel/preset-react"],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-decorators-legacy",
-    "syntax-dynamic-import",
+    "@babel/plugin-proposal-object-rest-spread",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import",
     "react-loadable/babel",
-    ["transform-runtime", {
-      "helpers": false,
-      "polyfill": false,
-      "regenerator": true,
-      "moduleName": "babel-runtime"
-    }]
+    "@babel/plugin-transform-runtime"
   ]
 }
