@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --config webpack.build.config.js",
-    "server-build": "webpack --config webpack.server.config.js"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "build": "NODE_ENV=production webpack --config webpack.build.config.js",
+    "server-build": "NODE_ENV=production webpack --config webpack.server.config.js",
+    "prod": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

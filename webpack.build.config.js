@@ -2,8 +2,13 @@ const path = require('path');
 const reactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const env =
+  process.env && process.env.NODE_ENV.trim() == "production"
+    ? "production"
+    : "development";
+
 module.exports = {
-  mode: 'development',
+  mode: env,
   entry: {
     app: './src/index.js'
   },

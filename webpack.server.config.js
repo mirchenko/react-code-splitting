@@ -1,8 +1,13 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 
+const env =
+  process.env && process.env.NODE_ENV.trim() == "production"
+    ? "production"
+    : "development";
+
 module.exports = {
-  mode: 'development',
+  mode: env,
   target: 'node',
   entry: './server/index.js',
   output: {
