@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
+const BrotliPlugin = require("brotli-webpack-plugin");
 
 const env =
   process.env && process.env.NODE_ENV.trim() == "production"
@@ -42,7 +44,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'template.html'
-    })
+    }),
+    new CompressionPlugin({
+      algorithm: "gzip"
+    }),
+    new BrotliPlugin()
   ],
   optimization: {
     splitChunks: {
