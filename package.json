@@ -7,6 +7,7 @@
     "start": "NODE_ENV=development webpack-dev-server",
     "build": "NODE_ENV=production webpack --config webpack.build.config.js",
     "server-build": "NODE_ENV=production webpack --config webpack.server.config.js",
+    "build-all": "npm run build && npm run server-build",
     "prod": "node server.js"
   },
   "dependencies": {
@@ -41,12 +42,12 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.8.3",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-loadable": "^5.3.1",
     "react-redux": "^5.0.7",
-    "react-router-config": "^1.0.0-beta.4",
+    "react-router-config": "^5.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^7.0.1",
@@ -61,7 +62,7 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime-corejs2": "^7.0.0",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.3"
