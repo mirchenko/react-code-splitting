@@ -5,21 +5,21 @@ import { Loading } from "../../common";
 import Meta from "../../Utils/Meta";
 
 
-const m = ({ country }) => ({ country });
+class Country extends Component {
 
-@connect(m, { fetchCountry })
-export default class Country extends Component {
-
-  static fetching({ dispatch, path }) {
-    return [dispatch(fetchCountry(path.substr(1)))];
+  // static fetching({ dispatch, path }) {
+  //   return [this.props.dispatch(fetchCountry(path.substr(1)))];
+  // }
+  componentWillMount() {
+    this.props.dispatch(fetchCountry(this.props.match.params.name));
   }
 
   componentDidMount() {
-    this.props.fetchCountry(this.props.match.params.name);
+    this.props.dispatch(fetchCountry(this.props.match.params.name));
   }
 
   render() {
-    const { country: { isFetching, flag, name, nativeName, capital, region, population, languages } } = this.props;
+    const { Country: { isFetching, flag, name, nativeName, capital, region, population, languages } } = this.props;
 
     if (isFetching) {
       return <Loading />;
@@ -28,10 +28,10 @@ export default class Country extends Component {
     const metaData = {
       authors: "Authors",
       title: name,
-      description: "some description",
+      description: "country description",
       lastModified: "some date",
       altTitle: "some alt-title",
-      canonical: "http://some-canonical-url.com"
+      canonical: "http://country-canonical-url.com"
     };
 
     return (
@@ -75,3 +75,12 @@ export default class Country extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    Country: state.Country
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(Country);

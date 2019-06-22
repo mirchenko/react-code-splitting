@@ -3,39 +3,61 @@ import { connect } from 'react-redux';
 import { fetchCountries } from "../../action/countries";
 import { Loading } from '../../common';
 import CountriesItem from './CountriesItem';
+import Meta from "../../Utils/Meta";
 
-const m = ({ countries }) => ({ countries });
 
+class Countries extends Component {
 
-@connect(m, { fetchCountries })
-export default class Countries extends Component {
-
-  static fetching ({ dispatch }) {
-    return [dispatch(fetchCountries())];
+  // static fetching({ dispatch }) {
+  //   return [dispatch(fetchCountries())];
+  // }
+  componentWillMount() {
+    this.props.dispatch(fetchCountries());
   }
 
   componentDidMount() {
-    const { countries: { data } } = this.props;
+    const { Countries: { data } } = this.props;
 
     if (!data || data.length === 0) {
-      this.props.fetchCountries();
+      this.props.dispatch(fetchCountries());
     }
   }
 
 
   render() {
-    const { countries: { isFetching, data } } = this.props;
+    const { Countries: { isFetching, data } } = this.props;
 
-    if(isFetching) {
+    if (isFetching) {
       return <Loading />
     }
 
-    return(
-      <div className="container">
-        <div className="countries-container">
-          {data.map((item, i) => <CountriesItem key={i} {...item} />)}
+    const metaData = {
+      authors: "Authors",
+      title: "Home Title: Countries",
+      description: "countries description",
+      lastModified: "some date",
+      altTitle: "some alt-title",
+      canonical: "http://countries-canonical-url.com"
+    };
+
+    return (
+      <React.Fragment>
+        <Meta data={metaData} />
+        <div className="container">
+          <div className="countries-container">
+            {data.map((item, i) => <CountriesItem key={i} {...item} />)}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 };
+const mapStateToProps = state => {
+  return {
+    Countries: state.Countries
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(Countries);

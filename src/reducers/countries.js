@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   lastUpdate: Date.now()
 };
 
-export default (state = INITIAL_STATE, action) => {
+const Countries = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REQUEST_COUNTRIES: {
       return { ...state, isFetching: true };
@@ -21,3 +21,4 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+export default Countries;
